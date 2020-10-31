@@ -55,4 +55,13 @@ def euclidienNorm(vector):
 
 
 def infinitNorm(vector):
-    return max(vector)
+    return max(abs(vector))
+
+
+def firstNorm(vector):
+    sum = 0
+
+    for coordinate in vector:
+        sum += abs(coordinate)
+
+    return sum

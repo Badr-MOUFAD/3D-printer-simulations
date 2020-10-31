@@ -4,7 +4,7 @@ import plotly.io as pio
 
 import numpy as np
 
-from simulationPlateau.equationMotionPlateau import R, axisLength, computeAngles
+from simulationPlateau.equationMotionPlateau import R, axisLength, computeAngles, Ry, Rz
 
 pio.templates.default = "plotly_white"
 
@@ -19,13 +19,18 @@ alpha = []
 beta = []
 gamma = []
 
+l1 = 0
+
 for l2 in L2:
     rowAlpha = []
     rowBeta = []
     rowGamma = []
 
     for l3 in L3:
-        angles = computeAngles([0, l2, l3])
+        if Ry([l1, l2, l3]) is None or Rz([l1, l2, l3]) is None:
+            angles = [None, None, None]
+        else:
+            angles = computeAngles([l1, l2, l3])
 
         rowAlpha.append(angles[0])
         rowBeta.append((angles[1]))

@@ -50,6 +50,6 @@ fig.update_layout(
     width=600
 )
 
-
+    
 fig.show()
 
