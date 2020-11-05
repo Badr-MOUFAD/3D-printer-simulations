@@ -202,4 +202,7 @@ def precisionAngles(L):
     return max(maxPrecision)
 
 
-print(computePhi([0, 10, 0]))
+# print(computePhi([500, 500 + 106.70474612339999, 500 - 210.98253586532033]))
+# print(computeTheta([500, 500 + 106.70474612339999, 500 - 210.98253586532033]))
+# print(computePhi([500, 525.615374658196, 638.0329632014607]))
+# print(computeTheta([500, 525.615374658196, 638.0329632014607]))

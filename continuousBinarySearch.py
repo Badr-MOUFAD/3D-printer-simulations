@@ -20,21 +20,39 @@ def ContinuousBinarySearch(interval, func, precision_=10 ** -2, direction="negat
     if a > b:
         raise Exception("Verify that interval[0] < interval[1]")
 
-    if func(a) and func(b):
-        return a
+    if direction == "negative":
+        if func(a) and func(b):
+            return a
 
-    if (not func(a)) and (not func(b)):
-        return b
+        if (not func(a)) and (not func(b)):
+            return b
 
-    middle = (a + b) / 2
+        middle = (a + b) / 2
 
-    if b - a < precision:
-        return middle
+        if b - a < precision:
+            return middle
 
-    if func(middle):
-        return ContinuousBinarySearch(interval=[a, middle], func=func, precision_=precision)
+        if func(middle):
+            return ContinuousBinarySearch(interval=[a, middle], func=func, precision_=precision)
+        else:
+            return ContinuousBinarySearch(interval=[middle, b], func=func, precision_=precision)
 
-    return ContinuousBinarySearch(interval=[middle, b], func=func, precision_=precision)
+    elif direction == "positive":
+        if func(a) and func(b):
+            return b
+        if (not func(a)) and (not func(b)):
+            return a
+
+        middle = (a + b) / 2
+
+        if b - a < precision:
+            return middle
+
+        if func(middle):
+            return ContinuousBinarySearch(interval=[middle, b], func=func, precision_=precision, direction=direction)
+        else:
+            return ContinuousBinarySearch(interval=[a, middle], func=func, precision_=precision, direction=direction)
+
 
 
 # input: func(starting) == True
@@ -45,22 +63,22 @@ def findSearchingInterval(starting, func, direction="positive"):
         while func(starting + length):
             length *= 2
 
-        return [starting + length / 2, starting + length]
+        return [starting + int(length / 2), starting + length]
     else:
         while func(starting - length):
             length *= 2
 
-        return [starting - length, starting - length / 2]
+        return [starting - length, starting - int(length / 2)]
 
 
 # # example :
 # def f(x):
-#     if x < -5:
-#         return False
+#     if x < 5:
+#         return True
 #
-#     return True
+#     return False
 #
 #
-# interval = findSearchingInterval(0, func=f, direction="reverse")
+# interval = findSearchingInterval(0, func=f, direction="positive")
 # print(interval)
-# print(ContinuousBinarySearch(interval=interval, func=f))
+# print(ContinuousBinarySearch(interval=interval, func=f, direction="positive"))

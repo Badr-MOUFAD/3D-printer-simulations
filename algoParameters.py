@@ -1,13 +1,22 @@
+import numpy as np
+from continuousBinarySearch import findSearchingInterval, ContinuousBinarySearch
+from Analysis import VectorFunction
 
-def findRadius(R_, r_, L_, H_):
-    import numpy as np
-    from continuousBinarySearch import findSearchingInterval, ContinuousBinarySearch
+import plotly.graph_objects as go
+import plotly.io as pio
+
+pio.templates.default = "plotly_white"
+
+from scipy.optimize import minimize
+
+
+def findRadius(vec):
 
     # -------- constant ------- #
-    R = R_  # diameter of chassis
-    r = r_  # diameter of nacelle
-    H = H_  # height of robot
-    L = L_  # length of arms
+    R = vec[0]  # R_  # diameter of chassis
+    r = vec[1]  # r_  # diameter of nacelle
+    L = vec[2]  # L_  # length of arms
+    H = vec[3]  # H_  # height of robot
 
     cosPi3 = np.cos(np.pi / 3)
     sinPi3 = np.sin(np.pi / 3)
@@ -99,18 +108,44 @@ def findRadius(R_, r_, L_, H_):
         return False
 
     # condition on parameters
+    if r < 0 or R < 0 or L < 0 or H < 0:
+        return 0
     if r > R:
         return 0
     if L < R - r:
         return 0
-    if H < L:
+    if H < np.sqrt(L ** 2 - DR ** 2):
         return 0
 
     # find radius
-    interval = findSearchingInterval(0, inWorkspace, direction="negative")
-    radius = -ContinuousBinarySearch(interval=interval, func=inWorkspace)
+    intervalMinus = findSearchingInterval(0, inWorkspace, direction="negative")
+    radiusMinus = -ContinuousBinarySearch(interval=intervalMinus, func=inWorkspace)
 
-    return radius
+    intervalPlus = findSearchingInterval(0, inWorkspace, direction="positive")
+    radiusPlus = ContinuousBinarySearch(interval=intervalPlus, func=inWorkspace, direction="positive")
+
+    return min(radiusPlus, radiusMinus)
+
+
+def gradientFindRadius(vec):
+    scalerFunction = VectorFunction(coordinateFunctions=[findRadius])
+
+    return scalerFunction.jacobienMatrix(vec)[0]
+
+
+def hessFindRadius(vec):
+    scalerFunction = VectorFunction(coordinateFunctions=[findRadius])
+
+    def partialDerivative(variable):
+        def f(x):
+            return scalerFunction.partialDerivateIn(0, variable, x)
+        return f
+
+    coordinateFunctions = [partialDerivative(i) for i in range(len(vec))]
+
+    gradientFunction = VectorFunction(coordinateFunctions=coordinateFunctions)
+
+    return gradientFunction.jacobienMatrix(vec)
 
 
 # example
@@ -119,4 +154,118 @@ def findRadius(R_, r_, L_, H_):
 # r__ = 180
 # L__ = 840
 #
-# print(findRadius(R__, r__, L__, H__))
+
+# dim = [860, 180, 860, 1820]
+#
+# #print(findRadius(dim))  # [860, 180, 840, 1820]
+# print(gradientFindRadius(dim))
+# print("*****")
+# print(hessFindRadius(dim))
+
+
+# R__ = np.linspace(180, 840 + 180, 400)
+# workspaceRadius = []
+#
+# for rad in R__:
+#     workspaceRadius.append(findRadius([rad, 180, 840, 1820]))
+#
+# fig = go.Figure(data=[
+#     go.Scatter(x=R__, y=workspaceRadius)
+# ])
+#
+# fig.update_layout(
+#     title="radius of working space",
+#     font=dict(
+#         family="Courier New, monospace"
+#     ),
+#     height=600,
+#     width=600
+# )
+#
+
+
+# L__ = np.linspace(860 - 180, 1820, 400)
+# workspaceRadius = []
+#
+# for armLength in L__:
+#     workspaceRadius.append(findRadius([860, 180, armLength, 1500]))
+#
+# fig = go.Figure(data=[
+#     go.Scatter(x=L__, y=workspaceRadius)
+# ])
+#
+# fig.update_layout(
+#     title="radius of working space",
+#     font=dict(
+#         family="Courier New, monospace"
+#     ),
+#     height=600,
+#     width=600
+# )
+#
+# fig.show()
+
+
+# H__ = np.linspace(0, 2000, 400)
+# workspaceRadius = []
+#
+# for height in H__:
+#     workspaceRadius.append(findRadius([860, 180, 840, height]))
+#
+# fig = go.Figure(data=[
+#     go.Scatter(x=H__, y=workspaceRadius)
+# ])
+#
+# fig.update_layout(
+#     title="radius of working space",
+#     font=dict(
+#         family="Courier New, monospace"
+#     ),
+#     height=600,
+#     width=600
+# )
+
+#fig.show()
+
+#
+# r__ = np.linspace(0, 860, 400)
+# workspaceRadius = []
+#
+# for small_r in r__:
+#     workspaceRadius.append(findRadius([860, small_r, 840, 1850]))
+#
+# fig = go.Figure(data=[
+#     go.Scatter(x=r__, y=workspaceRadius)
+# ])
+#
+# fig.update_layout(
+#     title="radius of working space",
+#     font=dict(
+#         family="Courier New, monospace"
+#     ),
+#     height=600,
+#     width=600
+# )
+#
+# fig.show()
+
+
+import time
+
+target = 70
+
+
+def funcToMinimize(vec):
+    return (findRadius(vec) - target) ** 2
+
+
+startMoment = time.time()
+
+res = minimize(funcToMinimize, np.array([target, target / 3, target, 5 * target]), method='nelder-mead',
+               options={'xatol': 1e-8, 'disp': True})
+
+endMoment = time.time()
+
+print("dimensions : {0}".format(res.x))
+print("actual error : {0}".format(abs(target - findRadius(res.x))))
+print("running time : {0}".format(endMoment - startMoment))

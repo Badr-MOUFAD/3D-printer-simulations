@@ -1,5 +1,5 @@
 
-def simulateWorkspace(R_, H_, r_, L_, nbPoints_=400, z_=0):
+def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
     import numpy as np
     from algoParameters import findRadius
     import plotly.graph_objects as go
@@ -118,7 +118,7 @@ def simulateWorkspace(R_, H_, r_, L_, nbPoints_=400, z_=0):
                 yWorkSpace.append(y[j])
 
     # effective working space
-    radius = findRadius(R_=R, H_=H, r_=r, L_=L)
+    radius = findRadius([R, r, L, H])
 
     t = np.linspace(0, 2 * np.pi, 200)
     cercleX = radius * np.cos(t)
@@ -143,4 +143,4 @@ def simulateWorkspace(R_, H_, r_, L_, nbPoints_=400, z_=0):
 
 
 # example
-simulateWorkspace(960, 2000, 500, 840, 800)
+simulateWorkspace(860, 180, 840, 600, 400, z_=0)
