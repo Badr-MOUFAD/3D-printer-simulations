@@ -212,3 +212,6 @@ def L3_(x):
 
     return result
 
+
+# point = [10, 20, 50]
+# print([L1(*point), L2(*point), L3(*point)])

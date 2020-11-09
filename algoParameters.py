@@ -252,7 +252,7 @@ def hessFindRadius(vec):
 
 import time
 
-target = 70
+target = 100
 
 
 def funcToMinimize(vec):
