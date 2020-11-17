@@ -9,9 +9,9 @@ from Analysis import VectorFunction, euclidienNorm, infinitNorm
 # r = 60  # radius of the end effector
 
 H = 1820
-R = 860
-r = 180
-L = 840
+R = 730
+r = 170
+L = 940
 
 dR = 0
 dl1 = 0
@@ -213,5 +213,20 @@ def L3_(x):
     return result
 
 
-# point = [10, 20, 50]
-# print([L1(*point), L2(*point), L3(*point)])
+def inWorkspace(x, y, z):
+    # checking the corners of the end effector are within the limits
+    # if not belowD1(x + u1[0], y + u1[1]):
+    #     return False
+    # if not belowD2(x + u2[0], y + u2[1]):
+    #     return False
+    # if not aboveD3(x + u3[0], y + u3[1]):
+    #     return False
+    # checking x, y are reachable
+    valueL1 = L1(x, y, z)
+    valueL2 = L2(x, y, z)
+    valueL3 = L3(x, y, z)
+
+    if None not in [valueL1, valueL2, valueL3]:
+        return True
+
+    return False

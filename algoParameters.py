@@ -249,23 +249,23 @@ def hessFindRadius(vec):
 #
 # fig.show()
 
-
-import time
-
-target = 100
-
-
-def funcToMinimize(vec):
-    return (findRadius(vec) - target) ** 2
-
-
-startMoment = time.time()
-
-res = minimize(funcToMinimize, np.array([target, target / 3, target, 5 * target]), method='nelder-mead',
-               options={'xatol': 1e-8, 'disp': True})
-
-endMoment = time.time()
-
-print("dimensions : {0}".format(res.x))
-print("actual error : {0}".format(abs(target - findRadius(res.x))))
-print("running time : {0}".format(endMoment - startMoment))
+#
+# import time
+#
+# target = 400
+#
+#
+# def funcToMinimize(vec):
+#     return (findRadius(vec) - target) ** 2
+#
+#
+# startMoment = time.time()
+#
+# res = minimize(funcToMinimize, np.array([target, target / 3, target, 5 * target]), method='nelder-mead',
+#                options={'xatol': 1e-8, 'disp': True})
+#
+# endMoment = time.time()
+#
+# print("dimensions   : {0}".format(res.x))
+# print("actual error : {0}".format(abs(target - findRadius(res.x))))
+# print("running time : {0}".format(endMoment - startMoment))

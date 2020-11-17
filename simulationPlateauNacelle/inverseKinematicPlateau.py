@@ -88,6 +88,9 @@ def x2(angle):
     c2 = nz * (nx * sinPi3 + ny * cosPi3 - nw * cosPi3) * Rx
     c3 = ((nx * sinPi3 + ny * cosPi3 - nw * cosPi3) * Rx) ** 2 + (nw * sinPi3 * Rx) ** 2 - (nw * a) ** 2
 
+    if c2 ** 2 - c1 * c3 < 0:
+        return None, None
+
     sol1 = (c2 + np.sqrt(c2 ** 2 - c1 * c3)) / c1
     sol2 = (c2 - np.sqrt(c2 ** 2 - c1 * c3)) / c1
 
@@ -100,6 +103,9 @@ def x3(angle):
     c1 = ny ** 2 + nz ** 2
     c2 = nx * nz * sinPi3 * Rx
     c3 = (nx ** 2 + ny ** 2) * (Rx * sinPi3) ** 2 - ny ** 2 * a ** 2
+
+    if c2 ** 2 - c1 * c3 < 0:
+        return None, None
 
     sol1 = (c2 + np.sqrt(c2 ** 2 - c1 * c3)) / c1
     sol2 = (c2 - np.sqrt(c2 ** 2 - c1 * c3)) / c1
@@ -120,11 +126,17 @@ def L1(x, angle):
 def L2(angle, L1):
     sol1, sol2 = x2(angle)
 
+    if None in [sol1, sol2]:
+        return None
+
     return L1 - clusterX2(angle[0], sol1, sol2)
 
 
 def L3(angle, L1):
     sol1, sol2 = x3(angle)
+
+    if None in [sol1, sol2]:
+        return None
 
     return L1 - clusterX3(angle[0], sol1, sol2)
 
@@ -142,3 +154,15 @@ def L3(angle, L1):
 #
 # print("phi = {0}".format(computePhi([500, L2(angle_, 500), L3(angle_, 500)])))
 # print("theta = {0}".format(computeTheta([500, L2(angle_, 500), L3(angle_, 500)])))
+
+# phi = -160
+# theta = 1
+#
+# point = [0, 0, 0]
+#
+# angle = [phi, theta]
+#
+# l1 = L1(point, angle)
+# L = [L1(point, angle), L2(angle, l1), L3(angle, l1)]
+#
+# print(L)

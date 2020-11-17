@@ -11,7 +11,7 @@ R = 860
 
 # axis
 axisLength = 1000
-limY = R
+limY = 200
 
 # plateau
 # x = 50

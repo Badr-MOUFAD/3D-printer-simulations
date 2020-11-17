@@ -143,4 +143,4 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
 
 
 # example
-simulateWorkspace(860, 180, 840, 1820, 400, z_=0)
+simulateWorkspace(730, 175, 940, 1820, 400, z_=0)
