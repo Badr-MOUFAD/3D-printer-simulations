@@ -8,7 +8,7 @@ from simulationPlateau.equationMotionPlateau import axisLength, computeMaxMinAnl
 
 
 pio.templates.default = "plotly_white"
-nbPoints = 1000
+nbPoints = 200
 
 L1 = np.linspace(0, axisLength, nbPoints)
 

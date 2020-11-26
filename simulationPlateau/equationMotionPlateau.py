@@ -11,7 +11,7 @@ R = 860
 
 # axis
 axisLength = 1000
-limY = 200
+limY = R
 
 # plateau
 # x = 50
@@ -28,9 +28,9 @@ dL = 1.8
 
 
 # plateau
-x0 = 50
-y0 = 50
-z0 = 50
+x0 = 10
+y0 = 10
+z0 = 10
 
 Rx = R - x0
 Ry0 = R - y0

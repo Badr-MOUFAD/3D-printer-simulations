@@ -8,6 +8,8 @@ import plotly.io as pio
 pio.templates.default = "plotly_white"
 
 
+#angle en rad
+
 axisOne_ = dict(
     R=725,
     r=175.5,
