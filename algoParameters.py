@@ -127,6 +127,25 @@ def findRadius(vec):
     return min(radiusPlus, radiusMinus)
 
 
+def findUsefulHeight(dimensions):
+  R, r, L, H = dimensions
+  DR = R - r
+
+  # condition on parameters
+  if r < 0 or R < 0 or L < 0 or H < 0:
+      return 0
+  if r > R:
+      return 0
+  if L < R - r:
+      return 0
+  if H < np.sqrt(L ** 2 - DR ** 2):
+      return 0
+
+  usefulHieght = H - np.sqrt(L ** 2 - (R - r - findRadius([R, r, L, H])) ** 2)
+
+  return usefulHieght if usefulHieght > 0 else 0
+
+
 def gradientFindRadius(vec):
     scalerFunction = VectorFunction(coordinateFunctions=[findRadius])
 
@@ -271,5 +290,6 @@ def hessFindRadius(vec):
 # print("actual error : {0}".format(abs(target - findRadius(res.x))))
 # print("running time : {0}".format(endMoment - startMoment))
 
-
-print(findRadius([791, 170, 940, 1820]))
+#
+# print(findRadius([791, 371.00553615, 604.49609375, 1820]))
+# print(findUsefulHeight([791, 371.00553615, 604.49609375, 1820]))

@@ -5,7 +5,7 @@ import numpy as np
 
 # constant
 #a = 1371  # length triangle corner
-l = 10   # distance slider - plan
+e = 0  # 10   # distance slider - plan
 R = 792  # distance axis / robot center
 d = 20  # distance axis / joint
 a = (R - d) * np.sqrt(3)
@@ -35,23 +35,23 @@ def normal(angles):
 
 def L1(vec, angles):
     n = normal(angles)
-    x, y, z = np.array(vec, dtype=float) - l * n
+    x, y, z = np.array(vec, dtype=float) - e * n
 
     return z + (n[0] * (x - xA) + n[1] * (y - yA)) / n[2]
 
 
 def L2(vec, angles):
     n = normal(angles)
-    x, y, z = np.array(vec, dtype=float) - l * n
+    x, y, z = np.array(vec, dtype=float) - e * n
 
-    return z - l + (n[0] * (x - xB) + n[1] * (y - yB)) / n[2]
+    return z - e + (n[0] * (x - xB) + n[1] * (y - yB)) / n[2]
 
 
 def L3(vec, angles):
     n = normal(angles)
-    x, y, z = np.array(vec, dtype=float) - l * n
+    x, y, z = np.array(vec, dtype=float) - e * n
 
-    return z - l + (n[0] * (x - xC) + n[1] * (y - yC)) / n[2]
+    return z - e + (n[0] * (x - xC) + n[1] * (y - yC)) / n[2]
 
 
 def computeThinkness(vec):

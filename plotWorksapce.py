@@ -26,7 +26,7 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
 
     # --------- equation of motion ------- #
     def L1(x, y, z):
-        term = ((DR) * sinPi3 + x) ** 2 + (DR * cosPi3 + y) ** 2
+        term = (DR * sinPi3 + x) ** 2 + (DR * cosPi3 + y) ** 2
 
         if L ** 2 < term:
             return None
@@ -130,7 +130,7 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
                     layout=(dict(height=600, width=600)))
 
     fig.update_layout(
-        title="Delta Robot Working Space for z={0:.2f}".format(z),
+        title="Delta Robot Working Space for z={0:.2f} radius={1:.2f}".format(z, radius),
         xaxis_title="X in mm",
         yaxis_title="Y in mm",
         font=dict(
@@ -143,4 +143,4 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
 
 
 # example
-simulateWorkspace(730, 175, 940, 1820, 400, z_=0)
+simulateWorkspace(790, 175, 940, 1820, 400, z_=0)
