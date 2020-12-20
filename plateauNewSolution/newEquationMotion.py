@@ -5,7 +5,7 @@ import numpy as np
 
 # constant
 #a = 1371  # length triangle corner
-e = 0  # 10   # distance slider - plan
+e = 0   # distance slider - plan
 R = 792  # distance axis / robot center
 d = 20  # distance axis / joint
 a = (R - d) * np.sqrt(3)
@@ -18,6 +18,9 @@ yB = -(R - d) * cosPi3
 
 xC = 0
 yC = R - d
+
+distTransMax = 50
+distTransMin = -16
 
 
 # angle of the form (phi, theta)
@@ -44,30 +47,14 @@ def L2(vec, angles):
     n = normal(angles)
     x, y, z = np.array(vec, dtype=float) - e * n
 
-    return z - e + (n[0] * (x - xB) + n[1] * (y - yB)) / n[2]
+    return z + (n[0] * (x - xB) + n[1] * (y - yB)) / n[2]
 
 
 def L3(vec, angles):
     n = normal(angles)
     x, y, z = np.array(vec, dtype=float) - e * n
 
-    return z - e + (n[0] * (x - xC) + n[1] * (y - yC)) / n[2]
-
-
-def computeThinkness(vec):
-    nbPoints = 100
-
-    arrPhi = np.linspace(-180, 179, nbPoints)
-    arrTheta = np.linspace(0, 90, nbPoints)
-
-    for theta in arrTheta:
-        for phi in arrPhi:
-            if 0 <= L1(vec, [phi, theta]) <= 1000 and 0 <= L2(vec, [phi, theta]) <= 1000 and 0 <= L3(vec, [phi,
-                                                                                                           theta]) <= 1000:
-                continue
-            else:
-                return theta
-    return
+    return z + (n[0] * (x - xC) + n[1] * (y - yC)) / n[2]
 
 
 def computeLo(vec, angles):
@@ -112,5 +99,24 @@ def findDistanceTranslation(vec, angles):
            euclidienNorm(C(solution) - np.array([xC, yC, L3(vec, angles)], dtype=float)) * np.sign(R - d - solution[2])
 
 
+def computeThinkness(vec):
+    nbPoints = 100
+
+    arrPhi = np.linspace(-180, 179, nbPoints)
+    arrTheta = np.linspace(0, 90, nbPoints)
+
+    for theta in arrTheta:
+        for phi in arrPhi:
+            angles = [phi, theta]
+
+            for dist in findDistanceTranslation(vec, angles):
+                if dist < distTransMin or dist > distTransMax:
+                    return theta
+
+            if 0 <= L1(vec, angles) <= 1000 and 0 <= L2(vec, angles) <= 1000 and 0 <= L3(vec, angles) <= 1000:
+                continue
+            else:
+                return theta
+    return
 # angle = 30 / 180 * np.pi
 # # print(computeThinkness([400 * np.cos(angle), 400 * np.sin(angle), 500]))

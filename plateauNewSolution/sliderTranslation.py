@@ -27,16 +27,16 @@ for phi in arrPhi:
 
 
 fig = go.Figure(data=[
-    go.Scatter(x=arrPhi, y=arrDisAxisA, name="axis 1"),
-    go.Scatter(x=arrPhi, y=arrDisAxisB, name="axis 2"),
-    go.Scatter(x=arrPhi, y=arrDisAxisC, name="axis 3"),
+    go.Scatter(x=arrPhi, y=arrDisAxisA, name="AA'", marker=dict(color="#ffab40")),
+    go.Scatter(x=arrPhi, y=arrDisAxisB, name="BB'", marker=dict(color="#85d5e6")),
+    go.Scatter(x=arrPhi, y=arrDisAxisC, name="CC'", marker=dict(color="#001633")),
     go.Scatter(x=arrPhi, y=[0 for phi in arrPhi], marker=dict(color="gray"), showlegend=False)
                       ])
 
 fig.update_layout(
-    title="translation distance for theta={0}".format(theta),
-    xaxis_title="phi in deg",
-    yaxis_title="distance trans in mm",
+    title="Distance de translation pour theta={0}".format(theta),
+    xaxis_title="phi en deg",
+    yaxis_title="distance en mm",
     font=dict(
         family="Courier New, monospace"
     )

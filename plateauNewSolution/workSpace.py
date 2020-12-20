@@ -11,19 +11,18 @@ pio.templates.default = "plotly_white"
 
 nbPoints = 30
 
-arrX = np.linspace(-500, 500, nbPoints)
-arrY = np.linspace(-380, 530, nbPoints)
-
-arrPossiblePhi = []
-arrPossibleTheta = []
+arrX = np.linspace(-400, 400, nbPoints)
+arrY = np.linspace(-400, 400, nbPoints)
 
 arrThinkness = []
 
-z = 500
+z = 100
 for y in arrY:
     row = []
     for x in arrX:
         row.append(computeThinkness([x, y, z]))
+
+        print([x, y, z])
     arrThinkness.append(row)
 
 
@@ -32,9 +31,9 @@ fig = go.Figure(data=[go.Contour(z=arrThinkness, x=arrX, y=arrY)],
                 layout=(dict(height=600, width=600)))
 
 fig.update_layout(
-    title="bar thikness for points in z={0}".format(z),
-    xaxis_title="X in mm",
-    yaxis_title="Y in mm",
+    title="largeur de la bande pour le plan z={0}".format(z),
+    xaxis_title="X en mm",
+    yaxis_title="Y en mm",
     font=dict(
         family="Courier New, monospace"
     )

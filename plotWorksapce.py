@@ -17,6 +17,7 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
     sinPi3 = np.sin(np.pi / 3)
 
     DR = R - r
+    dR = 70 + 30
 
     # translation
     h = r * cosPi3
@@ -65,26 +66,26 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
         return result
 
     def belowD1(x, y):
-        if (cosPi3 + 1) / sinPi3 * x + R > y:
+        if (cosPi3 + 1) / sinPi3 * x + (R + dR) > y:
             return True
 
         return False
 
     def belowD2(x, y):
-        if -(cosPi3 + 1) / sinPi3 * x + R > y:
+        if -(cosPi3 + 1) / sinPi3 * x + (R + dR) > y:
             return True
 
         return False
 
     def aboveD3(x, y):
-        if y > - R * cosPi3:
+        if y > - (R + dR) * cosPi3:
             return True
 
         return False
 
     # ------- algorithm of simulation ------- #
-    xLim = int(R)
-    yLim = int(R)
+    xLim = int(R + dR)
+    yLim = int(R + dR)
     nbPoints = nbPoints_
 
     # plan of simulation
@@ -142,5 +143,7 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
     return
 
 
+
+
 # example
-simulateWorkspace(790, 175, 940, 1820, 400, z_=0)
+simulateWorkspace(720, 170, 940, 1820, 400, z_=0)

@@ -10,7 +10,7 @@ pio.templates.default = "plotly_white"
 from scipy.optimize import minimize
 
 
-def findRadius(vec):
+def findRadius(vec, dR=70 + 30):
 
     # -------- constant ------- #
     R = vec[0]  # R_  # diameter of chassis
@@ -71,19 +71,19 @@ def findRadius(vec):
 
     # ----- constraint ------ #
     def belowD1(x, y):
-        if (cosPi3 + 1) / sinPi3 * x + R > y:
+        if (cosPi3 + 1) / sinPi3 * x + (R + dR) > y:
             return True
 
         return False
 
     def belowD2(x, y):
-        if -(cosPi3 + 1) / sinPi3 * x + R > y:
+        if -(cosPi3 + 1) / sinPi3 * x + (R + dR) > y:
             return True
 
         return False
 
     def aboveD3(x, y):
-        if y > - R * cosPi3:
+        if y > - (R + dR) * cosPi3:
             return True
 
         return False
@@ -293,3 +293,21 @@ def hessFindRadius(vec):
 #
 # print(findRadius([791, 371.00553615, 604.49609375, 1820]))
 # print(findUsefulHeight([791, 371.00553615, 604.49609375, 1820]))
+
+
+# print(findRadius([790, 170, 940, 1820]))
+# print(findUsefulHeight([790, 170, 940, 1820]))
+
+
+arrNacelleRadius = np.linspace(50, 250, 100)
+arrWorkspaceRadius = []
+
+for r in arrNacelleRadius:
+    arrWorkspaceRadius.append(findRadius([720, r, 940, 1850]))
+
+
+fig = go.Figure(data=[
+    go.Scatter(x=arrNacelleRadius, y=arrWorkspaceRadius)
+])
+
+fig.show()

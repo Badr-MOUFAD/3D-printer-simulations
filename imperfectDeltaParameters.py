@@ -6,35 +6,35 @@ import numpy as np
 
 axisOne = dict(
     id=1,
-    R=790,
-    r=175.5,
-    L=940,
-    H=1820,
-    phi=0.0349,
-    theta=1.588,
+    R=710.7,
+    r=130,
+    L=965,
+    H=1995,
+    phi=0.008726646,
+    theta=1.558579022,
     angleBasisChange=np.pi - 1.049 / 2
 )
 
 axisTwo = dict(
     id=2,
-    R=793,
-    r=163.5,
-    L=941,
-    H=1820,
-    phi=0.017,
-    theta=1.605,
+    R=713.6,
+    r=130,
+    L=965,
+    H=1995,
+    phi=0.008726646,
+    theta=1.58650429,
     angleBasisChange=1.042 / 2
 )
 
 
 axisThree = dict(
     id=3,
-    R=790,
-    r=174.5,
-    L=940,
-    H=1820,
-    phi=-0.017,
-    theta=1.588,
+    R=710.7,
+    r=130,
+    L=965,
+    H=1995,
+    phi=-0.019198622,
+    theta=1.574286985,
     angleBasisChange=-np.pi/2
 )
 
@@ -64,8 +64,10 @@ def computeEquationCoef(axis):
         return Ix, Iy, Iz, 0, - DR, 0
 
 
-robot = Delta(arrAxis=[axisOne, axisTwo, axisThree])
+# robot = Delta(arrAxis=[axisOne, axisTwo, axisThree])
+#
+# point = [10, 20, 950]
+#
+# print(robot.inverseKinetic(*point))
 
-point = [10, 20, 950]
-
-print(robot.inverseKinetic(*point))
+print(computeEquationCoef(axisThree))
