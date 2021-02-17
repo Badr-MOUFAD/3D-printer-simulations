@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b20be31-e163-420b-9740-cdafa9ebc3ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algoParameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/algoParameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dimensionnementNacelle.py" beforeDir="false" afterPath="$PROJECT_DIR$/dimensionnementNacelle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plateauNewSolution/evolutionThickness.py" beforeDir="false" afterPath="$PROJECT_DIR$/plateauNewSolution/evolutionThickness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plateauNewSolution/possibleConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/plateauNewSolution/possibleConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plateauNewSolution/workSpace.py" beforeDir="false" afterPath="$PROJECT_DIR$/plateauNewSolution/workSpace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plotWorksapce.py" beforeDir="false" afterPath="$PROJECT_DIR$/plotWorksapce.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,10 +100,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="901">
+              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -149,7 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/precisionEquation.py" />
         <option value="$PROJECT_DIR$/spaceWork.py" />
         <option value="$PROJECT_DIR$/precisionPlot2.py" />
         <option value="$PROJECT_DIR$/workSpaceScatter.py" />
@@ -200,6 +192,7 @@
         <option value="$PROJECT_DIR$/plateauNewSolution/evolutionThickness.py" />
         <option value="$PROJECT_DIR$/plateauNewSolution/possibleConfig.py" />
         <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -845,10 +838,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="901">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
         </state>
       </provider>
     </entry>

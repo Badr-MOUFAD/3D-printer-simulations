@@ -4,7 +4,7 @@
 As part of an academic mechatronics project, I worked with my team on the realization of a 3D printer.
 
 
-The 3D printer comes in the form of a parallel linear delta robot that has 6 axes:
+The 3D printer comes in the form of a **parallel linear delta robot** that has 6 axes:
 3 axes for moving a nacelle and 3 axes for moving and tilting the bed.
 
 
@@ -51,4 +51,4 @@ you can check the code of the UI that was developed for this purpose at [this li
 
 
 
-\*Mecatro 2020: Team Delta Le Grand\*
+> Mecatro 2020: Team Delta Le Grand
