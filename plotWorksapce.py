@@ -126,14 +126,14 @@ def simulateWorkspace(R_, r_, L_, H_, nbPoints_=400, z_=0):
     cercleY = radius * np.sin(t)
 
     # plot the graph
-    fig = go.Figure(data=[go.Scatter(x=xWorkSpace, y=yWorkSpace, mode='markers', name="Workspace"),
-                          go.Scatter(x=cercleX, y=cercleY, mode='markers', name="target")],
+    fig = go.Figure(data=[go.Scatter(x=xWorkSpace, y=yWorkSpace, mode='markers', name="Points atteignables", marker=dict(color="#289C6F")),
+                          go.Scatter(x=cercleX, y=cercleY, mode='markers', name="espace de travail", marker=dict(color="#001633"))],
                     layout=(dict(height=600, width=600)))
 
     fig.update_layout(
-        title="Delta Robot Working Space for z={0:.2f} radius={1:.2f}".format(z, radius),
-        xaxis_title="X in mm",
-        yaxis_title="Y in mm",
+        title="Espace de travail pour z={0:.2f} \nrayon={1:.2f}".format(z, radius),
+        xaxis_title="X en mm",
+        yaxis_title="Y en mm",
         font=dict(
             family="Courier New, monospace"
         )

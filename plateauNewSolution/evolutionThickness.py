@@ -23,10 +23,11 @@ for z in arrZ:
 
 
 fig = go.Figure(data=[
-    go.Scatter(x=arrZ, y=arrMinThickness, mode="markers + lines", marker=dict(color="#ffab40"))
+    go.Scatter(x=arrZ, y=arrMinThickness, mode="markers + lines", marker=dict(color="#289C6F"))
 ])
 
 fig.update_layout(
+    title="Inlinaison possible en fonction de z",
     xaxis_title="Z en mm",
     yaxis_title="largeur de bande en deg",
     font=dict(

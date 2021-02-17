@@ -24,7 +24,7 @@ def mecaPossible2(vec, angles):
 
 
 vec = [0, 0, 100]
-nbPoints = 500
+nbPoints = 450
 
 arrPhi = np.linspace(-180, 179, nbPoints)
 arrTheta = np.linspace(0, 90, nbPoints)
@@ -41,7 +41,7 @@ for theta in arrTheta:
 
 
 # plot the graph
-fig = go.Figure(data=[go.Scatter(x=arrPossiblePhi, y=arrPossibleTheta, mode="markers", marker=dict(color="#ffab40"))],
+fig = go.Figure(data=[go.Scatter(x=arrPossiblePhi, y=arrPossibleTheta, mode="markers", marker=dict(color="#289C6F"))],
                 layout=(dict(height=600, width=600)))
 
 fig.update_layout(

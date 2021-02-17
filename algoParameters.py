@@ -297,17 +297,3 @@ def hessFindRadius(vec):
 
 # print(findRadius([790, 170, 940, 1820]))
 # print(findUsefulHeight([790, 170, 940, 1820]))
-
-
-arrNacelleRadius = np.linspace(50, 250, 100)
-arrWorkspaceRadius = []
-
-for r in arrNacelleRadius:
-    arrWorkspaceRadius.append(findRadius([720, r, 940, 1850]))
-
-
-fig = go.Figure(data=[
-    go.Scatter(x=arrNacelleRadius, y=arrWorkspaceRadius)
-])
-
-fig.show()

@@ -9,7 +9,7 @@ import plotly.io as pio
 pio.templates.default = "plotly_white"
 
 
-nbPoints = 30
+nbPoints = 10
 
 arrX = np.linspace(-400, 400, nbPoints)
 arrY = np.linspace(-400, 400, nbPoints)
