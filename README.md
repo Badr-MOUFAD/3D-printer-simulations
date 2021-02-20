@@ -9,11 +9,11 @@ The 3D printer comes in the form of a **parallel linear delta robot** that has 6
 
 
 Our work focused mainly on:
-    - The conceptual design and 3D modeling of the robot namely the titling bed,
-    - Simulation of movement, efforts, workspace, and precision
-    - Control of the robot via Arduino
-    - The conception of a user interface that eases the control of the robot
-    - Marketing of the project
+- The conceptual design and 3D modeling of the robot namely the titling bed,
+- Simulation of movement, efforts, workspace, and precision
+- Control of the robot via Arduino
+- The conception of a user interface that eases the control of the robot
+- Marketing of the project
 
 
 
